@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        main {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.8) 100%),
+                url(netflix/images/bg.jpg);
+            background-size: max(1600px, 100vw);
+            background-repeat: no-repeat;
+            background-position: center center;
+            position: relative;
+            width: 100vw;
+            height: 97vh;
+        }
+
+        main>.back>nav {
+            width: 78%;
+            height: 100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            padding-top: 10px;
+        }
+
+        nav>img {
+            width: 12rem;
+            height: 3.5rem;
+        }
+
+        nav>.leftcontent {
+            display: flex;
+            gap: 35px;
+            z-index: 10;
+        }
+
+        .selectbox {
+            width: 165px;
+            height: 40px;
+            border: 2px solid;
+            display: flex;
+            border-radius: 5px;
+            border: 1px solid rgb(111, 102, 102);
+            background-color: rgba(0, 0, 0, 0.3);
+            padding-right: 10px;
+            padding-top: 8px;
+        }
+
+        .selectbox>select {
+            border-left: none;
+            border: none;
+            background-color: transparent;
+            padding-left: 15px;
+            font-size: 21px;
+            color: white;
+            height: 30px;
+            font-weight: 500;
+            width: 140px;
+            align-self: center;
+            letter-spacing: 1px;
+            position: relative;
+            bottom: 5px;
+        }
+
+        option {
+            color: black;
+        }
+
+        select:focus {
+            outline: none;
+        }
+
+        .selectbox>img {
+            width: 22px;
+            margin-left: 10px;
+        }
+
+        nav>.leftcontent>button {
+            padding: 0px 20px;
+            background-color: red;
+            border: none;
+            font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+            font-size: 19px;
+            border-radius: 5px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        nav>.leftcontent>button:hover {
+            background-color: rgb(213, 39, 39) !important;
+        }
+
+
+        .line {
+            height: 0.6rem;
+            width: 100vw;
+            background-color: rgb(35, 35, 35);
+            z-index: 2;
+
+        }
+
+        main>.data {
+            display: flex;
+            flex-direction: column;
+            color: #ffff;
+            text-align: center;
+            margin: auto;
+            width: 1200px;
+            height: 180px;
+            margin-top: 240px;
+            font-family: "Netflix Sans", "Helvetica  Neue", "Segoe UI", "Roboto", "Ubuntu", "sans-serif";
+            z-index: 10;
+        }
+
+        main>.data> :first-child {
+            font-size: 60px;
+            font-weight: 900;
+        }
+
+        main>.data :nth-child(2) {
+            font-size: 32px;
+            font-weight: 400;
+            padding-top: 10px;
+        }
+
+        main>.data :nth-child(3) {
+            font-size: 26px;
+            font-weight: 400;
+            padding-top: 30px;
+        }
+
+        .serchbox {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .serchbox>input {
+            height: 70px;
+            width: 450px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgb(111, 102, 102);
+            border-radius: 5px;
+            padding-left: 20px;
+            color: white;
+            font-size: large;
+        }
+
+        ::placeholder {
+            color: rgb(174, 175, 176);
+            font-size: 20px;
+        }
+
+        .serchbox>button {
+            background-color: red;
+            color: #ffff;
+            border-radius: 5px;
+            margin-left: 10px;
+            border: none;
+            padding: 0px 30px;
+            font-size: 30px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+
+        }
+
+        .serchbox>button:hover {
+            background-color: rgb(213, 39, 39) !important;
+        }
+
+        .mobile,
+        .tv1 {
+            color: #ffff;
+            height: 75vh;
+            margin: auto;
+            align-items: center;
+            width: 80%;
+            font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+            padding-bottom: 20px;
+            display: flex;
+            
+        }
+
+        .content {
+            font-size: 59px;
+            font-weight: 900;
+            width: 40vw;
+
+
+        }
+
+        .content> :nth-child(2) {
+            font-size: 30px;
+            font-weight: 400;
+        }
+
+        .tv1>.image {
+            display: flex;
+        }
+
+        .tv1>.image>img {
+            width: 750px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .tv1>.image>video {
+            margin-left: 95px !important;
+            width: 555px;
+            height: 530px;
+            position: absolute;
+            margin-left: 20px;
+        }
+
+        .mobile {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 60px;
+            width: 90%;
+            margin-left: -90px;
+            padding-top: 80px;
+
+        }
+
+        .mobile>.image {
+            width: 700px !important;
+        }
+
+        .mobile>.image>img {
+            width: 700px;
+
+            position: relative;
+        }
+
+        .mobile>.image>.graphics {
+            width: 380px;
+            height: 130px;
+            border: 2px solid #776e6e;
+            position: relative;
+            border-radius: 15px;
+            left: 160px;
+            bottom: 160px;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .mobile>.image>.graphics>div {
+            width: 60%;
+            height: 100px;
+
+            display: block;
+            font-size: 18px;
+            font-weight: 400;
+            color: blue;
+            padding: 20px 10px;
+        }
+
+        .mobile>.image>.graphics>div>span {
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .tv1>.tvimage {
+            display: flex;
+        }
+
+        .tv1>.tvimage>img {
+            width: 750px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .tv1>.tvimage>video {
+            margin-left: 95px !important;
+            width: 480px;
+            height: 570px;
+            position: absolute;
+            margin-left: 140px !important;
+            margin-top: -90px;
+        }
+
+        .bars {
+            width: 100vw;
+            height: 110vh;
+            margin-bottom: 90px;
+        }
+
+        .bars>.uppertxt {
+            font-size: 59px;
+            font-weight: 900;
+            text-align: center;
+            color: #ffff;
+            font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+            padding-top: 70px;
+            padding-bottom: 20px;
+        }
+
+        .bars>.quetion {
+            background-color: #2d2d2d;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 80vw;
+            height: 11vh;
+            color: #ffff;
+            margin: 10px auto;
+            padding-left: 30px;
+            padding-right: 30px;
+            cursor: pointer;
+        }
+
+        .bars>.quetion>span {
+            font-size: 30px;
+            font-weight: 400;
+            font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+
+        }
+
+        .bars>.quetion>img {
+            width: 38px;
+        }
+
+        .bars>.lasttxt {
+            font-size: 26px;
+            font-weight: 400;
+            padding-top: 30px;
+            color: #ffff;
+            font-family: "Netflix Sans", "Helvetica  Neue", "Segoe UI", "Roboto", "Ubuntu", "sans-serif";
+
+            text-align: center;
+        }
+
+        .last {
+            color: rgba(255, 255, 255, 0.7);
+            height: 50vh;
+            margin: auto;
+            padding-top: 80px;
+            width: 80%;
+            font-family: "Netflix Sans", "Helvetica Neue", "Segoe UI", Roboto, Ubuntu, sans-serif;
+            padding-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .last>.upper {
+            font-weight: 400;
+            font-size: 21px;
+
+        }
+
+        a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .last>.item {
+            list-style: none;
+            display: grid;
+            
+            width: 100%;
+            grid-template-columns: auto auto auto auto;
+            grid-template-rows: 30px 30px 30px 30px;
+            font-size: 19px;
+            row-gap: 20px;
+        }
+        footer
+        {
+            margin-top: 30px;
+        }
+        .end
+        {
+            font-size: 18px;
+            padding-top:20px ;
+            padding-bottom: 100px;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+    <main>
+        <div class="back">
+            <nav>
+                <img src="netflix/images/logo.svg" alt="logo">
+                <div class="leftcontent">
+                    <div class="selectbox">
+                        <img src="netflix/images/translator.svg" alt="">
+                        <select name="box" id="">
+                            <option value="english">English</option>
+                            <option value="हिन्दी">हिन्दी</option>
+                        </select>
+                    </div>
+                    <button>Sign In</button>
+                </div>
+            </nav>
+        </div>
+        <section class="data">
+            <div>Unlimited movies, TV shows and more</div>
+            <div>Watch anywhere. Cancel anytime.</div>
+            <div>Ready to watch? Enter your email to create or restart your membership.</div>
+            <section class="serchbox">
+                <input type="email" placeholder="Email addresss">
+                <button>Get Started &gt;</button>
+            </section>
+        </section>
+    </main>
+    <div class="line"></div>
+    <section class="tv1">
+        <div class="content">
+            <div>Enjoy on your TV</div>
+            <div>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</div>
+        </div>
+        <div class="image">
+            <img src="netflix/images/tv.png" alt="tv">
+            <video src="netflix/video/video-tv-in-0819.m4v" muted autoplay loop></video>
+        </div>
+
+    </section>
+
+    <div class="line"></div>
+
+    <div class="mobile">
+
+        <aside class="content">
+            <div>Download your shows to watch offline</div>
+            <div>Save your favourites easily and always have something to watch.</div>
+        </aside>
+
+        <div class="image">
+            <img src="netflix/images/mobile-0819.jpg" alt="mobile">
+            <div class="graphics">
+                <img src="netflix/images/boxshot.png" alt="" width="80px" height="90px">
+                <div> <span>Stranger Things </span>
+                    <p>Downloading...</p>
+                </div>
+                <img src="netflix/images/download-icon.gif" alt="" width="70px" height="80px">
+            </div>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="tv1">
+        <div class="content">
+            <div>Watch everywhere</div>
+            <div>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</div>
+        </div>
+        <div class="tvimage">
+            <img src="netflix/images/device-pile-in.png" alt="tv">
+            <video src="netflix/video/video-devices-in.m4v" muted autoplay loop></video>
+        </div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="mobile">
+        <aside class="content">
+            <div>Create profiles for kids</div>
+            <div>Send children on adventures with their favourite characters in a space made just for them—free with
+                your membership.</div>
+        </aside>
+
+        <div class="image">
+            <img src="netflix/images/children.png" alt="mobile">
+
+        </div>
+
+    </div>
+    <div class="line"></div>
+
+
+    <div class="bars">
+        <div class="uppertxt">Frequently Asked Questions</div>
+
+        <div class="quetion"><span> What is Netflix?</span> <img src="netflix/images/plus.svg" alt="plus symbol"> </div>
+        <div class="quetion"><span> How much does Netflix cost?</span> <img src="netflix/images/plus.svg"
+                alt="plus symbol"></div>
+        <div class="quetion"><span> where can I watch?</span> <img src="netflix/images/plus.svg" alt="plus symbol">
+        </div>
+        <div class="quetion"><span> How do I cancel?</span> <img src="netflix/images/plus.svg" alt="plus symbol"></div>
+        <div class="quetion"><span> What can I watch on Netflix?</span> <img src="netflix/images/plus.svg"
+                alt="plus symbol"></div>
+        <div class="quetion"><span> is Netflix is good for kids?</span> <img src="netflix/images/plus.svg"
+                alt="plus symbol"></div>
+
+        <div class="lasttxt">Ready to watch? Enter your email to create or restart your membership.</div>
+
+        <section class="serchbox">
+            <input type="email" placeholder="Email addresss">
+            <button>Get Started&nbsp;&gt;</button>
+        </section>
+    </div>
+    <div class="line"></div>
+
+    <div class="last">
+        <div class="upper">Questions? Call <a href="">000-800-100-8343</a></div>
+        <div class="item">
+
+
+            <div><a href="#">FAQ</a></div>
+            <div><a href="#">
+                    Help Centre</a></div>
+            <div><a href="#">
+                    Account</a></div>
+            <div><a href="#">
+                    Media Centre</a></div>
+            <div><a href="#">Investor Relations</a></div>
+            <div><a href="#">Jobs</a></div>
+            <div><a href="#">
+                    Ways to Watch</a></div>
+            <div><a href="#">
+                    Terms of Use</a></div>
+            <div><a href="#">Privacy</a></div>
+            <div><a href="#">
+                    Cookie Preferences</a></div>
+            <div><a href="#">
+                    Corporate Information</a></div>
+            <div><a href="#">
+                    Contact Us</a></div>
+            <div><a href="#">Speed Test</a></div>
+            <div><a href="#">Legal Notices</a></div>
+            <div><a href="#">
+                    Only on Netflix</a></div>
+
+
+        </div>
+        <footer>
+
+            <div class="selectbox">
+                <img src="netflix/images/translator.svg" alt="">
+                <select name="box" id="">
+                    <option value="english">English</option>
+                    <option value="हिन्दी">हिन्दी</option>
+                </select>
+            </div> 
+            <div class="end">Netflix&nbsp;India</div>
+        </footer>
+        </body>
+        
+        </html>
